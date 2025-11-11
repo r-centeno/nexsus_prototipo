@@ -1,7 +1,7 @@
 # Sistema Integrado de Gestão Médica - NEXSUS
 ## 1. Visão Geral
   Uma aplicação web que armazene dados de faturamento em um banco de dados robusto, analisando-os utilizando técnicas de data science e inteligência artificial e apresentando os resultados e insights em um dashboard interativo acessível de forma segura em qualquer dispositivo. O sistema ainda salvará os dados em um banco de dados firebird dos aplicativos SUS. Desenvolver uma aplicação web para gestão de atendimentos médicos com integração de diversas fontes de dados (PDF, XLSX, webservices e arquivos TXT). A aplicação fará o processamento, tratamento e consolidação dos dados em um banco central (Nexsus) e usará técnicas de Data Science e Inteligência Artificial para gerar análises e dashboards interativos. O sistema será desenvolvido em conformidade com as normas da LGPD, garantindo segurança, privacidade e rastreabilidade.
-  Este projeto é totalmente modular, iniciando-se pelo módulo de faturamento que é totalmente funcional de forma isolada e progressivamente serão incorporados novos módulos como financeiro, estoque, entrada de resultados manual e via integração, gestão de fila, agendamento e etc.
+  Este projeto é totalmente modular, iniciando-se pelo módulo de faturamento SUS que é totalmente funcional de forma isolada e progressivamente serão incorporados novos módulos como financeiro, estoque, entrada de resultados manual e via integração, gestão de fila, agendamento e etc.
 
 - ✅ Processamento de múltiplos formatos (PDF, Excel, TXT)
 - 🔗 Integração com webservices oficiais (CNES, ViaCEP, CADWEB)

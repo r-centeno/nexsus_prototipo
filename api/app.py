@@ -6,6 +6,7 @@ from utils.extensions import db
 from routes.registro import registro_bp
 #from routes.dashboard import dashboard_bp
 from routes.auth import auth_bp
+from routes.login import login_bp
 from models.procedimento import Procedimento
 from models.atendimento import Atendimento
 from models.paciente import Paciente
@@ -33,9 +34,11 @@ def create_app():
     app.register_blueprint(registro_bp)
     app.register_blueprint(auth_bp)
     #app.register_blueprint(dashboard_bp)
+    app.register_blueprint(login_bp)
     return app
 
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True, port=5051)
+
 

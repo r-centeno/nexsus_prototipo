@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const resposta = await fetch("http://127.0.0.1:5051/api/validar-codigo", {
+      const resposta = await fetch("/api/validar-codigo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -59,5 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
 

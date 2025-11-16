@@ -5,7 +5,7 @@ from flask_cors import cross_origin
 
 auth_bp = Blueprint("auth", __name__)
 
-@auth_bp.route("http://127.0.0.1:5051/api/login", methods=["POST", "OPTIONS"])
+@auth_bp.route("/api/login", methods=["POST", "OPTIONS"])
 @cross_origin()
 def login():
     dados = request.get_json()
@@ -27,4 +27,5 @@ def login():
             "email": usuario.email
         }
     }), 200
+
 

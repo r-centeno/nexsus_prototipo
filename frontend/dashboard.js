@@ -1,6 +1,6 @@
 async function carregarDashboard() {
   try {
-    const resposta = await fetch("http://127.0.0.1:5051/api/dashboard");
+    const resposta = await fetch("/api/dashboard");
     const dados = await resposta.json();
 
     document.getElementById("card-total-exames").textContent = dados.total_exames;
@@ -80,5 +80,6 @@ async function carregarDashboard() {
 }
 
 document.addEventListener("DOMContentLoaded", carregarDashboard);
+
 
 

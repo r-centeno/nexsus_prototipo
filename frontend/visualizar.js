@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function carregarRegistros() {
     try {
-      const resposta = await fetch("/api/registros");
+      const resposta = await fetch("http://127.0.0.1:5051/api/registros");
       window.registros = await resposta.json();
       preencherTabela(window.registros);
     } catch (erro) {
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("arquivo", arquivo);
 
     try {
-      const resposta = await fetch("/api/importar", {
+      const resposta = await fetch("http://127.0.0.1:5051/api/importar", {
         method: "POST",
         body: formData,
       });
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!id) return;
 
     try {
-      const resposta = await fetch(`/api/registros/${id}`, {
+      const resposta = await fetch(`http://127.0.0.1:5051/api/registros/${id}`, {
         method: "DELETE",
       });
 
@@ -294,4 +294,5 @@ function exportarTodos() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+
 

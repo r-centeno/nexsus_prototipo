@@ -20,9 +20,15 @@ def create_app():
     app.config.from_object(Config)
     db.init_app(app)
     
-    # Habilita CORS para todas as rotas da API
-    CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
-    #CORS(app)
+    #CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+    CORS(app)
+    @app.errorhandler(500)
+    def internal_error(error):
+        return jsonify({"error": "Erro interno no servidor"}), 500
+
+    @app.errorhandler(404)
+    def not_found(error):
+        return jsonify({"error": "Rota não encontrada"}), 404
 
     app.register_blueprint(registro_bp)
     app.register_blueprint(auth_bp)
@@ -32,3 +38,4 @@ def create_app():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True, port=5051)
+

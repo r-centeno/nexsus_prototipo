@@ -10,7 +10,7 @@ import pprint
 registro_bp = Blueprint("registro", __name__)
 
 
-@registro_bp.route('http://127.0.0.1:5051/api/registros', methods=['GET'])
+@registro_bp.route('/api/registros', methods=['GET'])
 def listar_registros():
     pessoas = Pessoa.query.all()
     resultado = []
@@ -54,7 +54,7 @@ def listar_registros():
     return jsonify(resultado)
 
 
-@registro_bp.route("http://127.0.0.1:5051/api/registros", methods=["POST"])
+@registro_bp.route("/api/registros", methods=["POST"])
 @cross_origin()
 def criar_registro():
     dados = request.get_json()
@@ -127,7 +127,7 @@ def criar_registro():
         return jsonify({"erro": "Falha ao salvar registro"}), 500
 
 
-@registro_bp.route("http://127.0.0.1:5051/api/registros/<int:id>", methods=["PUT"])
+@registro_bp.route("/api/registros/<int:id>", methods=["PUT"])
 def atualizar_registro(id):
     dados = request.json
     pessoa = Pessoa.query.get_or_404(id)
@@ -179,7 +179,7 @@ def atualizar_registro(id):
     return jsonify({"mensagem": "Registro atualizado com sucesso!"})
 
 
-@registro_bp.route("http://127.0.0.1:5051/api/registros/<int:id>", methods=["DELETE"])
+@registro_bp.route("/api/registros/<int:id>", methods=["DELETE"])
 def excluir_registro(id):
     pessoa = Pessoa.query.get_or_404(id)
     db.session.delete(pessoa)
@@ -187,7 +187,7 @@ def excluir_registro(id):
     return jsonify({"mensagem": "Registro excluído com sucesso!"})
 
 
-@registro_bp.route("http://127.0.0.1:5051/api/cep/<cep>", methods=["GET"])
+@registro_bp.route("/api/cep/<cep>", methods=["GET"])
 def consultar_cep(cep):
     resposta = requests.get(f"https://viacep.com.br/ws/{cep}/json/")
     if resposta.status_code == 200:
@@ -196,7 +196,7 @@ def consultar_cep(cep):
     return jsonify({"erro": "CEP não encontrado"}), 404
 
 
-@registro_bp.route("http://127.0.0.1:5051/api/procedimento/<codigo>", methods=["GET"])
+@registro_bp.route("/api/procedimento/<codigo>", methods=["GET"])
 def obter_nome_procedimento(codigo):
     procedimento = Procedimento.query.filter_by(
         cod_procedimento=codigo).first()
@@ -205,7 +205,7 @@ def obter_nome_procedimento(codigo):
     return jsonify({"erro": "Procedimento não encontrado"}), 404
 
 
-@registro_bp.route("http://127.0.0.1:5051/api/importar", methods=["POST"])
+@registro_bp.route("/api/importar", methods=["POST"])
 def importar_registros():
     from werkzeug.utils import secure_filename
     import pandas as pd
@@ -365,6 +365,7 @@ def importar_registros():
         "mensagem": f"{total_inseridos} atendimentos importados com sucesso.",
         "erros": []
     }), 200
+
 
 
 

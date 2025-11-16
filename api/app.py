@@ -21,8 +21,8 @@ def create_app():
     app.config.from_object(Config)
     db.init_app(app)
     
-    #CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
-    CORS(app)
+    CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+    #CORS(app)
     @app.errorhandler(500)
     def internal_error(error):
         return jsonify({"error": "Erro interno no servidor"}), 500
@@ -40,5 +40,6 @@ def create_app():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True, port=5051)
+
 
 

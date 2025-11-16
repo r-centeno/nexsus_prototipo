@@ -132,7 +132,6 @@ def atualizar_registro(id):
     dados = request.json
     pessoa = Pessoa.query.get_or_404(id)
 
-    # Atualiza dados da Pessoa
     pessoa.nome = dados.get("nome", pessoa.nome)
     pessoa.cpf = dados.get("cpf", pessoa.cpf)
     pessoa.dt_nascimento = datetime.strptime(dados.get(
@@ -144,7 +143,6 @@ def atualizar_registro(id):
     pessoa.raca = dados.get("raca", pessoa.raca)
     pessoa.nacionalidade = dados.get("nacionalidade", pessoa.nacionalidade)
 
-    # Atualiza Endereço
     endereco = pessoa.endereco[0] if pessoa.endereco else None
     if endereco:
         endereco.cep = dados.get("cep", endereco.cep)
@@ -159,7 +157,6 @@ def atualizar_registro(id):
         endereco.uf = dados.get("uf", endereco.uf)
         endereco.ibge = dados.get("ibge", endereco.ibge)
 
-    # Atualiza Atendimento
     atendimento = pessoa.atendimentos[-1] if pessoa.atendimentos else None
     if atendimento:
         atendimento.data_procedimento = datetime.strptime(dados.get(
@@ -170,7 +167,6 @@ def atualizar_registro(id):
         atendimento.carater_atendimento = dados.get(
             "carater_atendimento", atendimento.carater_atendimento)
 
-        # Atualiza Procedimento se necessário
         cod_proc = dados.get("codigo_procedimento")
         if cod_proc:
             procedimento = Procedimento.query.filter_by(
@@ -369,4 +365,5 @@ def importar_registros():
         "mensagem": f"{total_inseridos} atendimentos importados com sucesso.",
         "erros": []
     }), 200
+
 

@@ -61,7 +61,7 @@ def enviar_codigo():
     if not usuario:
         return jsonify({"erro": "Usuário não encontrado"}), 404
 
-    pessoa = usuario.pessoa  # usa o relacionamento já definido no modelo
+    pessoa = usuario.pessoa
     if not pessoa:
         return jsonify({"erro": "Pessoa vinculada não encontrada"}), 404
 
@@ -124,12 +124,10 @@ def validar_codigo():
     if not email or not codigo:
         return jsonify({"erro": "E-mail e código são obrigatórios"}), 400
 
-    # Busca o usuário pelo e-mail
     usuario = Usuario.query.filter_by(email=email).first()
     if not usuario:
         return jsonify({"erro": "Usuário não encontrado"}), 404
-
-    # Busca o código mais recente ainda não validado
+        
     acesso = Acesso.query.filter_by(
         id_usuario=usuario.id_usuario,
         email=email,
@@ -140,7 +138,6 @@ def validar_codigo():
     if not acesso:
         return jsonify({"erro": "Código inválido ou expirado"}), 400
 
-    # Marca como validado
     acesso.validado = True
     db.session.commit()
 
@@ -169,4 +166,5 @@ def redefinir_senha():
         db.session.rollback()
         print("Erro ao redefinir senha:", e)
         return jsonify({"erro": "Falha ao atualizar senha"}), 500
+
 

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const senha = senhaInput.value.trim();
 
       try {
-        const resposta = await fetch("http://127.0.0.1:5051/api/login", {
+        const resposta = await fetch("/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, senha })
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const resposta = await fetch("http://127.0.0.1:5051/api/enviar-codigo", {
+        const resposta = await fetch("/api/enviar-codigo", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ usuario })
@@ -94,5 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 

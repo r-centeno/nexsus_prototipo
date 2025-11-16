@@ -1,4 +1,3 @@
-// Exibe o nome do usuário logado no topo
 const username = localStorage.getItem("username");
 
 if (username) {
@@ -7,11 +6,11 @@ if (username) {
     usuarioLogado.innerHTML = `<strong>${username}</strong>`;
   }
 } else {
-  // Se não estiver logado, redireciona para o login
+  
   window.location.href = "index.html";
 }
 
-// Função de logoff
+
 function logout() {
   localStorage.clear();
   window.location.href = "index.html";
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnNovo = document.getElementById("btn-novo");
   const btnExcluir = document.getElementById("btn-excluir");
 
-  // Carrega dados do registro vindo da tela de visualização
   const registro = localStorage.getItem("registroEditavel");
   if (registro) {
     preencherFormulario(JSON.parse(registro));
@@ -59,19 +57,19 @@ document.addEventListener("DOMContentLoaded", () => {
     formRegistro.dataset.idPessoa = registro.id_pessoa;
   }
 
-  // Botão "Salvar" aciona envio do formulário
+  
   btnSalvar.addEventListener("click", () => {
     formRegistro.requestSubmit();
   });
 
-  // Botão "Novo" limpa o formulário
+  
   btnNovo.addEventListener("click", () => {
     formRegistro.reset();
     delete formRegistro.dataset.idPessoa;
     mostrarAlerta("Formulário limpo para novo registro", "info");
   });
 
-  // Botão "Excluir" remove o registro atual
+  
   btnExcluir.addEventListener("click", async () => {
     const id = formRegistro.dataset.idPessoa;
     if (!id) {
@@ -80,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const resposta = await fetch(`http://127.0.0.1:5051/api/registros/${id}`, {
+      const resposta = await fetch(`/api/registros/${id}`, {
         method: "DELETE"
       });
 
@@ -96,15 +94,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Envio do formulário (criação ou edição)
+  
   formRegistro.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const id = this.dataset.idPessoa;
     const metodo = id ? "PUT" : "POST";
     const url = id
-      ? `http://127.0.0.1:5051/api/registros/${id}`
-      : `http://127.0.0.1:5051/api/registros`;
+      ? `/api/registros/${id}`
+      : `/api/registros`;
 
     const dados = {
       cns: document.getElementById("cns").value.trim(),
@@ -153,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Alerta visual
+
 function mostrarAlerta(mensagem, tipo = "info") {
   const alerta = document.getElementById("alerta-app");
   alerta.textContent = mensagem;
@@ -168,7 +166,7 @@ function mostrarAlerta(mensagem, tipo = "info") {
 document.getElementById("cep").addEventListener("blur", async () => {
   const cep = document.getElementById("cep").value.trim();
   if (cep.length === 8) {
-    const resposta = await fetch(`http://127.0.0.1:5051/api/cep/${cep}`);
+    const resposta = await fetch(`/api/cep/${cep}`);
     const dados = await resposta.json();
 
     document.getElementById("tipo_logradouro").value = dados.tipo_logradouro || "";
@@ -183,10 +181,11 @@ document.getElementById("cep").addEventListener("blur", async () => {
 document.getElementById("codigo_procedimento").addEventListener("blur", async () => {
   const codigo = document.getElementById("codigo_procedimento").value.trim();
   if (codigo.length > 0) {
-    const resposta = await fetch(`http://127.0.0.1:5051/api/procedimento/${codigo}`);
+    const resposta = await fetch(`/api/procedimento/${codigo}`);
     const dados = await resposta.json();
 
     document.getElementById("nome_procedimento").value = dados.nome_procedimento || "";
   }
 });
+
 

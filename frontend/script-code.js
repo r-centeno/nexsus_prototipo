@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const codigo = Array.from(inputs).map(input => input.value).join("");
-    const email = localStorage.getItem("email"); // ou recuperar via backend se necessário
+    const email = localStorage.getItem("email");
 
     if (codigo.length !== 6 || !email) {
       alert("Código inválido ou usuário não identificado.");
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const resposta = await fetch("http://127.0.0.1:5051/api/validar-codigo", {
+      const resposta = await fetch("/api/validar-codigo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -59,3 +59,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+

@@ -25,7 +25,7 @@ SMTP_PASS = os.getenv("SMTP_PASS")
 
 auth_bp = Blueprint("auth", __name__)
 
-@auth_bp.route("/api/login", methods=["POST", "OPTIONS"])
+@auth_bp.route("http://127.0.0.1:5051/api/login", methods=["POST", "OPTIONS"])
 @cross_origin()
 def login():
     dados = request.get_json()
@@ -48,7 +48,7 @@ def login():
         }
     }), 200
 
-@auth_bp.route("/api/enviar-codigo", methods=["POST"])
+@auth_bp.route("http://127.0.0.1:5051/api/enviar-codigo", methods=["POST"])
 @cross_origin()
 def enviar_codigo():
     dados = request.get_json()
@@ -114,7 +114,7 @@ def enviar_codigo():
 
     return jsonify({"mensagem": "Código enviado com sucesso", "email": email}), 200
 
-@auth_bp.route("/api/validar-codigo", methods=["POST"])
+@auth_bp.route("http://127.0.0.1:5051/api/validar-codigo", methods=["POST"])
 @cross_origin()
 def validar_codigo():
     dados = request.get_json()
@@ -143,7 +143,7 @@ def validar_codigo():
 
     return jsonify({"mensagem": "Código validado com sucesso"}), 200
 
-@auth_bp.route("/api/redefinir-senha", methods=["POST"])
+@auth_bp.route("http://127.0.0.1:5051/api/redefinir-senha", methods=["POST"])
 @cross_origin()
 def redefinir_senha():
     dados = request.get_json()
@@ -166,5 +166,6 @@ def redefinir_senha():
         db.session.rollback()
         print("Erro ao redefinir senha:", e)
         return jsonify({"erro": "Falha ao atualizar senha"}), 500
+
 
 

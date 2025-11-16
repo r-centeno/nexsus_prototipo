@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const resposta = await fetch(`/api/registros/${id}`, {
+      const resposta = await fetch(`http://127.0.0.1:5051/api/registros/${id}`, {
         method: "DELETE"
       });
 
@@ -181,11 +181,12 @@ document.getElementById("cep").addEventListener("blur", async () => {
 document.getElementById("codigo_procedimento").addEventListener("blur", async () => {
   const codigo = document.getElementById("codigo_procedimento").value.trim();
   if (codigo.length > 0) {
-    const resposta = await fetch(`/api/procedimento/${codigo}`);
+    const resposta = await fetch(`http://127.0.0.1:5051/api/procedimento/${codigo}`);
     const dados = await resposta.json();
 
     document.getElementById("nome_procedimento").value = dados.nome_procedimento || "";
   }
 });
+
 
 

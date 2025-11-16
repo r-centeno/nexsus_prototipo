@@ -11,7 +11,7 @@ document.getElementById("resetForm").addEventListener("submit", async (e) => {
   }
 
   try {
-    const resposta = await fetch("http://127.0.0.1:5051/api/redefinir-senha", {
+    const resposta = await fetch("/api/redefinir-senha", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -32,5 +32,6 @@ document.getElementById("resetForm").addEventListener("submit", async (e) => {
     alert("Erro de conexão com o servidor.");
   }
 });
+
 
 

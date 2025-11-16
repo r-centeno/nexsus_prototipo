@@ -1,15 +1,14 @@
 async function carregarDashboard() {
   try {
-    const resposta = await fetch("http://127.0.0.1:5051/api/dashboard");
+    const resposta = await fetch("/api/dashboard");
     const dados = await resposta.json();
 
-    // Atualiza os cards
     document.getElementById("card-total-exames").textContent = dados.total_exames;
     document.getElementById("card-valor-total").textContent = 
       `R$ ${dados.valor_total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
     document.getElementById("card-pacientes-ativos").textContent = dados.pacientes_ativos;
 
-    // Gráfico de linha (quantidade por grupo)
+    
     const config1 = {
       type: 'line',
       data: {
@@ -32,7 +31,7 @@ async function carregarDashboard() {
       }
     };
 
-    // Gráfico de pizza (percentual por grupo)
+    
     const config2 = {
       type: 'doughnut',
       data: {
@@ -49,7 +48,7 @@ async function carregarDashboard() {
       }
     };
 
-    // Gráfico de barras (valor por grupo)
+    
     const config3 = {
       type: 'bar',
       data: {
@@ -81,3 +80,4 @@ async function carregarDashboard() {
 }
 
 document.addEventListener("DOMContentLoaded", carregarDashboard);
+

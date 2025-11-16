@@ -1,4 +1,4 @@
-// Exibe o nome do usuário logado no topo
+
 const username = localStorage.getItem("username");
 
 if (username) {
@@ -7,11 +7,11 @@ if (username) {
     usuarioLogado.innerHTML = `<strong>${username}</strong>`;
   }
 } else {
-  // Se não estiver logado, redireciona para o login
+  
   window.location.href = "index.html";
 }
 
-// Função de logoff
+
 function logout() {
   localStorage.clear();
   window.location.href = "index.html";
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function carregarRegistros() {
     try {
-      const resposta = await fetch("http://127.0.0.1:5051/api/registros");
+      const resposta = await fetch("/api/registros");
       window.registros = await resposta.json();
       preencherTabela(window.registros);
     } catch (erro) {
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("janela-detalhes").style.display = "flex";
   };
 
-  // Disponibiliza fecharDetalhes globalmente para o onclick do HTML
+  
   window.fecharDetalhes = function () {
     document.getElementById("janela-detalhes").style.display = "none";
   };
@@ -172,12 +172,12 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("arquivo", arquivo);
 
     try {
-      const resposta = await fetch("http://127.0.0.1:5051/api/importar", {
+      const resposta = await fetch("/api/importar", {
         method: "POST",
         body: formData,
       });
 
-      // O endpoint pode retornar CSV em caso de erro. Tente JSON e, se falhar, ignore parse.
+      
       let resultado = null;
       try {
         resultado = await resposta.json();
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!id) return;
 
     try {
-      const resposta = await fetch(`http://127.0.0.1:5051/api/registros/${id}`, {
+      const resposta = await fetch(`/api/registros/${id}`, {
         method: "DELETE",
       });
 
@@ -272,20 +272,20 @@ function exportarTodos() {
     return;
   }
 
-  // Cabeçalho fixo
+ 
   let conteudo = "ID | Nome | CPF | Data de Nascimento\n";
 
-  // Linhas dos registros
+  
   window.registros.forEach((r) => {
     const linha = `${r.id_pessoa} | ${r.nome} | ${r.cpf} | ${r.dt_nascimento}`;
     conteudo += linha + "\n";
   });
 
-  // Cria o arquivo .txt
+  
   const blob = new Blob([conteudo], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
 
-  // Cria link para download
+  
   const a = document.createElement("a");
   a.href = url;
   a.download = "registros_exportados.txt";
@@ -294,3 +294,4 @@ function exportarTodos() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+

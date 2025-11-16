@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXSUS - Verificar Código</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="./assets/icon/logoSOT.png" type="image/x-icon" />
+</head>
+
+<body>
+
+  <div class="login-container">
+    <img src="./assets/image/logoSOT2.png" alt="Logo" class="logo" />
+    <h2><span id="nex">NEX</span><span id="sus">SUS</span></h2>
+
+    <form id="codeForm" autocomplete="off">
+      <p class="signup-text">Digite o código de 6 dígitos enviado para seu e-mail</p>
+
+      <div class="code-inputs">
+        <input type="text" maxlength="1" class="code" required />
+        <input type="text" maxlength="1" class="code" required />
+        <input type="text" maxlength="1" class="code" required />
+        <input type="text" maxlength="1" class="code" required />
+        <input type="text" maxlength="1" class="code" required />
+        <input type="text" maxlength="1" class="code" required />
+      </div>
+
+      <button type="submit" id="confirmButton" disabled>CONFIRMAR CÓDIGO</button>
+      <p class="signup-text">Não recebeu? <a href="#">Reenviar código</a></p>
+    </form>
+  </div>
+  <input type="hidden" id="usuario" />
+
+  <script src="script-code.js"></script>
+  <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

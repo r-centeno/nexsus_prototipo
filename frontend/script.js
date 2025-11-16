@@ -1,0 +1,97 @@
+document.addEventListener("DOMContentLoaded", () => {
+  // LOGIN
+  const loginForm = document.getElementById("loginForm");
+  if (loginForm) {
+    loginForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const usuarioInput = document.getElementById("usuario");
+      const senhaInput = document.getElementById("password");
+
+      if (!usuarioInput || !senhaInput) {
+        console.error("Campos de login não encontrados no DOM.");
+        return;
+      }
+
+      const username = usuarioInput.value.trim();
+      const senha = senhaInput.value.trim();
+
+      try {
+        const resposta = await fetch("http://127.0.0.1:5051/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, senha })
+        });
+
+        const dados = await resposta.json();
+
+        if (resposta.ok) {
+          // ✅ Padronizado para 'username'
+          localStorage.setItem("username", dados.usuario.username);
+          localStorage.setItem("email", dados.usuario.email);
+          window.location.href = "visualizar.html";
+        } else {
+          alert(dados.erro || "Erro ao fazer login");
+        }
+      } catch (erro) {
+        console.error("Erro na requisição:", erro);
+        alert("Erro de conexão com o servidor");
+      }
+    });
+  }
+
+  // LOGOUT
+  window.logout = function () {
+    localStorage.clear();
+    window.location.href = "index.html";
+  };
+
+  // RECUPERAÇÃO DE SENHA
+  const linkRecuperar = document.getElementById("link-recuperar-senha");
+  if (linkRecuperar) {
+    linkRecuperar.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      const usuarioInput = document.getElementById("usuario");
+      const usuario = usuarioInput ? usuarioInput.value.trim() : "";
+
+      if (!usuario) {
+        alert("Por favor, preencha o campo de usuário antes de continuar.");
+        return;
+      }
+
+      try {
+        const resposta = await fetch("http://127.0.0.1:5051/api/enviar-codigo", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ usuario })
+        });
+
+        const resultado = await resposta.json();
+
+        if (resposta.ok) {
+          localStorage.setItem("username", usuario); // ✅ padronizado
+          localStorage.setItem("email", resultado.email);
+          alert("Código enviado para o e-mail cadastrado.");
+          window.location.href = "validar.html";
+        } else {
+          alert(resultado.erro || "Erro ao enviar código.");
+        }
+      } catch (erro) {
+        console.error("Erro na requisição:", erro);
+        alert("Erro de conexão com o servidor.");
+      }
+    });
+  }
+
+  // Salva o nome de usuário ao sair do campo
+  const usuarioInput = document.getElementById("usuario");
+  if (usuarioInput) {
+    usuarioInput.addEventListener("blur", () => {
+      const usuario = usuarioInput.value.trim();
+      if (usuario) {
+        localStorage.setItem("username", usuario); // ✅ padronizado
+      }
+    });
+  }
+});

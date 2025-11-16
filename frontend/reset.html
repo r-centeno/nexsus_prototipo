@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXSUS - Redefinir Senha</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link rel="icon" href="./assets/icon/logoSOT.png" type="image/x-icon" />
+</head>
+
+<body>
+
+  <div class="login-container">
+    <img src="./assets/image/logoSOT2.png" alt="Logo" class="logo" />
+    <h2><span id="nex">NEX</span><span id="sus">SUS</span></h2>
+
+    <form id="resetForm" autocomplete="off">      
+      <div class="password-wrapper">
+        <input type="password" id="password" name="newPassword" placeholder="Nova senha" required />
+        <i class="bi bi-eye" id="btn_password" onclick="mostrarSenha()"></i>
+      </div>
+
+      <div class="password-wrapper">
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme a nova senha" required />
+        <i class="bi bi-eye" id="btn_confirmPasswordpassword" onclick="mostrarConfirmSenha()"></i>
+      </div>
+
+      <button id="loginBtn" type="submit">REDEFINIR SENHA</button>
+      
+    </form>
+  </div>
+
+  <script src="reset-script.js"></script>
+  <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

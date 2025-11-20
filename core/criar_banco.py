@@ -1,5 +1,5 @@
 from .app import create_app
-from api.utils.extensions import db
+from core.utils.extensions import db
 from .models.atendimento import Atendimento
 from .models.endereco import Endereco
 from .models.paciente import Paciente

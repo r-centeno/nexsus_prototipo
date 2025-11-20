@@ -1,6 +1,6 @@
 from datetime import datetime
-from api.utils.extensions import db
-from api.models import Atendimento, Procedimento, Organizacao
+from core.utils.extensions import db
+from core.models import Atendimento, Procedimento, Organizacao
 
 
 def obter_dados_dashboard():

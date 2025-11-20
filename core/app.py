@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_cors import CORS
-from api.utils.extensions import db, migrate
-from api.config import Config
-from api.routes.registro import registro_bp
-from api.routes.auth import auth_bp 
+from core.utils.extensions import db, migrate
+from core.config import Config
+from core.routes.registro import registro_bp
+from core.routes.auth import auth_bp 
 # from api.routes.login import login_bp 
-from api.routes.dashboard import dashboard_bp 
+from core.routes.dashboard import dashboard_bp 
 
 def create_app():
     app = Flask(__name__)

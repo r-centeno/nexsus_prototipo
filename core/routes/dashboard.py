@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from api.utils.dashboard_data import obter_dados_dashboard
+from core.utils.dashboard_data import obter_dados_dashboard
 
 dashboard_bp = Blueprint("dashboard", __name__)
 

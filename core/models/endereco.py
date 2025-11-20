@@ -1,4 +1,4 @@
-from api.utils.extensions import db
+from core.utils.extensions import db
 
 class Endereco(db.Model):
     __tablename__ = 'endereco'

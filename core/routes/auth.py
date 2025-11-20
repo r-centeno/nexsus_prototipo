@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify
 from flask_cors import cross_origin
-from api.models.usuario import Usuario
-from api.models.pessoa import Pessoa
-from api.models.acesso import Acesso
-from api.utils.extensions import db
+from core.models.usuario import Usuario
+from core.models.pessoa import Pessoa
+from core.models.acesso import Acesso
+from core.utils.extensions import db
 from email.message import EmailMessage
 import smtplib, random, os
 from datetime import datetime

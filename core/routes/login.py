@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from api.models import Usuario
-from api.utils.extensions import db
+from core.models import Usuario
+from core.utils.extensions import db
 from flask_cors import cross_origin
 
 auth_bp = Blueprint("auth", __name__)

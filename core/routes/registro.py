@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_cors import cross_origin
-from api.models import Pessoa, Endereco, Atendimento, Paciente, Procedimento
-from api.utils.validador_cep import validar_cep
-from api.utils.extensions import db
+from core.models import Pessoa, Endereco, Atendimento, Paciente, Procedimento
+from core.utils.validador_cep import validar_cep
+from core.utils.extensions import db
 from datetime import datetime
 import requests
 

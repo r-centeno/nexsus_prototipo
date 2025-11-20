@@ -1,1 +1,14 @@
+# Ignorar ambiente virtual (pesado e inútil no servidor)
+.venv/
+venv/
+
+# Ignorar banco de dados local (segurança)
+*.db
+*.sqlite3
+
+# Ignorar arquivos compilados do Python
+__pycache__/
+*.pyc
+
+# Ignorar arquivo de senhas (Segurança CRÍTICA!)
 .env

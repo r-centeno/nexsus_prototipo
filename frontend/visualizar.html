@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXSUS - Visualização</title>
+  <link rel="stylesheet" href="visualizar.css" />
+
+</head>
+
+<body>
+<header class="header">
+  <div class="header-esquerda">
+    <img src="./assets/image/logoSOT2.png" alt="Logo" class="logo" />
+    <h1><span id="nex">NEX</span><span id="sus">SUS</span></h1>
+  </div>
+
+  <div class="header-centro">
+    <input type="text" id="filtro-nome" placeholder="Buscar por nome, CPF ou CNS">
+    <div id="usuario-logado" class="usuario-logado"></div>
+  </div>
+</header>
+
+
+  <div id="menu-contexto" class="menu-contexto">
+    <button onclick="editarSelecionado()">Editar</button>
+    <button onclick="verDetalhes()">Ver detalhes</button>
+    <button onclick="importarSelecionado()">Importar</button>
+    <button onclick="exportarTodos()">Exportar</button>
+    <button onclick="excluirSelecionado()">Excluir</button>
+  </div>
+
+  <div id="alerta-app" class="alerta-app" style="display: none;"></div>
+
+  <div id="modal-confirmacao" class="modal-confirmacao" style="display: none;">
+    <div class="modal-conteudo">
+      <p>Deseja realmente excluir este registro?</p>
+      <div class="botoes">
+        <button id="btn-confirmar-exclusao">Sim</button>
+        <button id="btn-cancelar-exclusao">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-importacao" class="modal-confirmacao" style="display: none;">
+    <div class="modal-conteudo">
+      <p>Selecione o arquivo de importação</p>
+      <div class="grupo-importacao">
+        <label for="arquivo-importacao" class="botao-estilizado">Escolher arquivo</label>
+        <input type="file" id="arquivo-importacao" accept=".xlsx,.xls" style="display: none;" />
+      </div>
+      <div class="botoes">
+        <button id="btn-confirmar-importacao">Importar</button>
+        <button id="btn-cancelar-importacao">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="janela-detalhes" class="janela-detalhes" style="display: none;">
+    <div class="conteudo-detalhes" id="conteudo-detalhes">
+      <h3 id="titulo-procedimento" style="font-weight: bold;"></h3>
+      <p><strong></strong> <span id="nome-procedimento-detalhe"></span></p>
+      <p><strong>Valor:</strong> <span id="valor-procedimento-detalhe"></span></p>
+      <p class="fechar-detalhes" onclick="fecharDetalhes()">✖</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="sidebar">
+      <ul>
+        <li><a href="dashboard.html">Painel</a></li>
+        <li><a href="#">Relatórios</a></li>
+        <li><a href="crud.html">CRUD</a></li>
+        <li><a href="#" onclick="logout()">Sair</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      <div class="data-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>CPF</th>
+              <th>Nome</th>
+              <th>Procedimento</th>
+              <th>Descrição</th>
+              <th>Data</th>
+              <th>CID</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-registros">
+            <!-- Dados serão inseridos aqui -->
+          </tbody>
+        </table>
+      </div>
+
+      <div id="paginacao" class="paginacao-barra"></div>
+    </main>
+  </div>
+
+  <script src="visualizar.js"></script>
+</body>
+
+</html>

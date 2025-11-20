@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXSUS - Visualização</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <div style="display:flex; align-items:center;">
+      <img src="./assets/image/logoSOT2.png" alt="Logo" class="logo" />
+      <h1><span id="nex">NEX</span><span id="sus">SUS</span></h1>
+    </div>
+    <div id="usuario-logado" style="position: absolute; top: 10px; right: 10px;">
+      <!-- Nome do usuário será inserido aqui -->
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <ul>
+        <li><a href="dashboard.html">Painel</a></li>
+        <li><a href="visualizar.html">Relatórios</a></li>
+        <li><a href="crud.html">CRUD</a></li>
+        <li><a href="#" onclick="logout()">Sair</a></li>
+      </ul>
+    </nav>
+    <main class="main-content">
+
+      <div class="cards-dashboard">
+        <div class="card">
+          <h3>Total de Exames</h3>
+          <p id="card-total-exames">0</p>
+        </div>
+        <div class="card">
+          <h3>Valor Total do Mês</h3>
+          <p id="card-valor-total">R$ 0,00</p>
+        </div>
+        <div class="card">
+          <h3>Pacientes Ativos</h3>
+          <p id="card-pacientes-ativos">0</p>
+        </div>
+      </div>
+
+<div class="charts-center">
+  <div class="chart-card"><canvas id="grafico1"></canvas></div>
+  <div class="chart-card"><canvas id="grafico2"></canvas></div>
+  <div class="chart-card"><canvas id="grafico3"></canvas></div>
+</div><!-- novo gráfico -->
+
+
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

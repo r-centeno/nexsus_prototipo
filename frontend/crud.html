@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXSUS - CRUD</title>
+  <link rel="stylesheet" href="crud.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+
+<body>
+  <header class="header" style="justify-content: space-between;">
+    <div style="display:flex; align-items:center;">
+      <img src="./assets/image/logoSOT2.png" alt="Logo" class="logo" />
+      <h1><span id="nex">NEX</span><span id="sus">SUS</span></h1>
+    </div>
+    <div class="header-buttons">
+      <div class="button-bar" style="position: static;">
+        <button id="btn-novo" title="Novo"><i class="bi bi-plus-circle"></i></button>
+        <button id="btn-salvar" title="Salvar"><i class="bi bi-check2-circle"></i></button>
+        <button id="btn-excluir" title="Excluir"><i class="bi bi-trash3"></i></button>
+      </div>
+          <div id="usuario-logado">
+      <!-- Nome do usuário será inserido aqui -->
+    </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <ul>
+        <li><a href="dashboard.html">Painel</a></li>
+        <li><a href="visualizar.html">Relatórios</a></li>
+        <li><a href="crud.html">CRUD</a></li>
+        <li><a href="#" onclick="logout()">Sair</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      <!-- FORMULÁRIO -->
+      <form id="form-registro" class="card-form">
+        <input type="hidden" id="id_atendimento" />
+
+        <!-- BLOCO PACIENTE -->
+        <fieldset class="form-block">
+          <legend>Identificação do Paciente</legend>
+          <div class="grid">
+            <div class="field"><label>CNS</label><input id="cns" maxlength="15"></div>
+            <div class="field"><label>NOME</label><input id="nome"></div>
+            <div class="field">
+              <label for="sexo">Sexo</label>
+              <select id="sexo" name="sexo">
+                <option value="">Selecione</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+              </select>
+            </div>
+            <div class="field"><label>CPF</label><input id="cpf" maxlength="11"></div>
+            <div class="field"><label>NASCIMENTO</label><input id="dt_nascimento" type="date"></div>
+            <div class="field"><label>RAÇA/COR</label><input id="raca"></div>
+            <div class="field"><label>NACIONALIDADE</label><input id="nacionalidade"></div>
+            <div class="field"><label>CEP</label><input id="cep" maxlength="8"></div>
+            <div class="field"><label>LOGRADOURO</label><input id="tipo_logradouro" disabled></div>
+            <div class="field"><label>ENDEREÇO</label><input id="nome_logradouro" disabled></div>
+            <div class="field"><label>NÚMERO</label><input id="numero"></div>
+            <div class="field"><label>COMPLEMENTO</label><input id="complemento"></div>
+            <div class="field"><label>BAIRRO</label><input id="bairro" disabled></div>
+            <div class="field"><label>CIDADE</label><input id="cidade" disabled></div>
+            <div class="field"><label>UF</label><input id="uf" disabled></div>
+            <div class="field"><label>DDD</label><input id="ddd" maxlength="2"></div>
+            <div class="field"><label>TELEFONE</label><input id="telefone" maxlength="9"></div>
+            <div class="field"><label>IBGE</label><input id="ibge" disabled></div>
+          </div>
+        </fieldset>
+
+        <!-- BLOCO ATENDIMENTO -->
+        <fieldset class="form-block">
+          <legend>Identificação do Atendimento</legend>
+          <div class="grid">
+            <div class="field"><label>DATA ATENDIMENTO</label><input id="data_proc" type="date"></div>
+            <div class="field"><label>CÓDIGO PROCEDIMENTO</label><input id="codigo_procedimento" maxlength="10"></div>
+            <div class="field"><label>NOME PROCEDIMENTO</label><input id="nome_procedimento"></div>
+            <div class="field"><label>QUANTIDADE</label><input id="quantidade"></div>
+            <div class="field"><label>CID</label><input id="cid" maxlength="4"></div>
+            <div class="field"><label>CARÁTER ATENDIMENTO</label><input id="carater_atendimento" maxlength="2"></div>
+          </div>
+        </fieldset>
+      </form>
+    </main>
+  </div>
+
+  <script src="crud.js"></script>
+</body>
+
+</html>

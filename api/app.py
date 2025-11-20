@@ -22,10 +22,6 @@ def create_app():
     # app.register_blueprint(login_bp)
     app.register_blueprint(dashboard_bp)
 
-    @app.route('/')
-    def home():
-        return {"status": "API Online", "version": "1.0"}
-
     return app
 
 app = create_app()
